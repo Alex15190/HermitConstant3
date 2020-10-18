@@ -1,0 +1,21 @@
+## Build generated
+build/
+DerivedData/
+Pods
+# Xcode
+.DS_Store
+project.xcworkspace/
+xcuserdata/
+xcshareddata/
+
+*.idea/
+
+## Other / XCode7
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+#Merge Tool Diff Files
+*.orig
+
+.DS_Store
