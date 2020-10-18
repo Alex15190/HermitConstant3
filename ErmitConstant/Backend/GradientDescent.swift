@@ -38,6 +38,7 @@ class GradientDescent {
     }
 
     func isInPolyhedron(_ point: ECPoint) -> Bool {
-        return false
+        let tmp = point.matrix.transpose() <*> matrix <*> point.matrix
+        return tmp.scalar >= 1
     }
 }

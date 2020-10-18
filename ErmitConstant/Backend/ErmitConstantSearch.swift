@@ -74,10 +74,10 @@ class ErmitConstantSearch {
 }
 
 class ECPoint {
-    var matrix = Matrix(rows: 1, columns: 2, repeatedValue: 0)
+    var matrix = Matrix(rows: 1, columns: 2, repeatedValue: 1)
 
     init() {
-        matrix = Matrix(rows: 1, columns: 2, repeatedValue: 0)
+        matrix = Matrix(rows: 1, columns: 2, repeatedValue: 1)
     }
 
     init(_ array: Array<Double>) {
