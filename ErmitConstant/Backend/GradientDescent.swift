@@ -7,28 +7,39 @@
 //
 
 import Foundation
+import Surge
 
 class GradientDescent {
     static let maxIteration = 10000
-    var matrix: Matrix
+    static let twoDimMatrix = Matrix([[1.0, 0.5], [0.5, 1.0]])
+    
+    var matrix: Matrix<Double>
 
-    init(matrix: Matrix) {
+    init(matrix: Matrix<Double>) {
         self.matrix = matrix
     }
 
-    func startSearch(startPoint: ECPoint?) -> ECPoint? {
-        return recFunc(startPoint ?? createFirstPoint())
+    func startSearch(dim: Int) -> Matrix<Double>? {
+        return createFirstPoint(dimension: dim)
     }
 
-    func createFirstPoint() -> ECPoint {
-        return ECPoint()
+    func createFirstPoint(dimension: Int) -> Matrix<Double> {
+        if dimension == 2 {
+            return GradientDescent.twoDimMatrix
+        } else {
+            let firstMatrix = createFirstPoint(dimension: dimension - 1)
+            let n = dimension - 1
+            //create new matrix of change firstMatrix
+            return firstMatrix
+            
+        }
     }
 
-    func nextPoint(_ currentPoint: ECPoint) -> ECPoint {
-        return ECPoint()
+    func nextPoint(_ currentPoint: Matrix<Double>) -> Matrix<Double> {
+        return Matrix()
     }
 
-    func recFunc(_ point: ECPoint, iteration: Int = 0) -> ECPoint? {
+    func recFunc(_ point: Matrix<Double>, iteration: Int = 0) -> Matrix<Double>? {
         guard iteration < GradientDescent.maxIteration else { return nil }
         if isInPolyhedron(point) {
             return point
@@ -37,8 +48,11 @@ class GradientDescent {
         }
     }
 
-    func isInPolyhedron(_ point: ECPoint) -> Bool {
-        let tmp = point.matrix.transpose() <*> matrix <*> point.matrix
-        return tmp.scalar >= 1
+    func isInPolyhedron(_ point: Matrix<Double>) -> Bool {
+        let tmp = transpose(point) * matrix * point
+        guard let det = det(tmp) else {
+            return false
+        }
+        return det >= 1
     }
 }

@@ -3,20 +3,33 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A74BE8D72558039D00D671CA /* Surge in Frameworks */ = {isa = PBXBuildFile; productRef = A74BE8D62558039D00D671CA /* Surge */; };
 		A7984F28253CA5D500FD8D1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7984F27253CA5D500FD8D1F /* AppDelegate.swift */; };
 		A7984F2A253CA5D500FD8D1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7984F29253CA5D500FD8D1F /* ViewController.swift */; };
 		A7984F2C253CA5D800FD8D1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7984F2B253CA5D800FD8D1F /* Assets.xcassets */; };
 		A7984F2F253CA5D800FD8D1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7984F2D253CA5D800FD8D1F /* Main.storyboard */; };
-		A7984F3B253CA8B400FD8D1F /* ErmitConstantSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7984F3A253CA8B400FD8D1F /* ErmitConstantSearch.swift */; };
 		A7984F3D253CB4FA00FD8D1F /* GradientDescent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7984F3C253CB4FA00FD8D1F /* GradientDescent.swift */; };
-		A7984F42253CB6B000FD8D1F /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7984F41253CB6B000FD8D1F /* Matrix.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A7878E0A255800840008B7CD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		A74BE8D22558032500D671CA /* Surge */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Surge; sourceTree = "<group>"; };
 		A7984F24253CA5D500FD8D1F /* ErmitConstant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErmitConstant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7984F27253CA5D500FD8D1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7984F29253CA5D500FD8D1F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,9 +37,7 @@
 		A7984F2E253CA5D800FD8D1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A7984F30253CA5D800FD8D1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7984F31253CA5D800FD8D1F /* ErmitConstant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ErmitConstant.entitlements; sourceTree = "<group>"; };
-		A7984F3A253CA8B400FD8D1F /* ErmitConstantSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErmitConstantSearch.swift; sourceTree = "<group>"; };
 		A7984F3C253CB4FA00FD8D1F /* GradientDescent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientDescent.swift; sourceTree = "<group>"; };
-		A7984F41253CB6B000FD8D1F /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,18 +45,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A74BE8D72558039D00D671CA /* Surge in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A74BE8D52558039D00D671CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A7984F1B253CA5D500FD8D1F = {
 			isa = PBXGroup;
 			children = (
 				A7984F26253CA5D500FD8D1F /* ErmitConstant */,
 				A7984F3E253CB66100FD8D1F /* ThirdParty */,
 				A7984F25253CA5D500FD8D1F /* Products */,
+				A74BE8D52558039D00D671CA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,7 +94,6 @@
 		A7984F39253CA88700FD8D1F /* Backend */ = {
 			isa = PBXGroup;
 			children = (
-				A7984F3A253CA8B400FD8D1F /* ErmitConstantSearch.swift */,
 				A7984F3C253CB4FA00FD8D1F /* GradientDescent.swift */,
 			);
 			path = Backend;
@@ -83,7 +102,7 @@
 		A7984F3E253CB66100FD8D1F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				A7984F41253CB6B000FD8D1F /* Matrix.swift */,
+				A74BE8D22558032500D671CA /* Surge */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -98,12 +117,17 @@
 				A7984F20253CA5D500FD8D1F /* Sources */,
 				A7984F21253CA5D500FD8D1F /* Frameworks */,
 				A7984F22253CA5D500FD8D1F /* Resources */,
+				A7878E0A255800840008B7CD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A74BE8D42558038C00D671CA /* PBXTargetDependency */,
 			);
 			name = ErmitConstant;
+			packageProductDependencies = (
+				A74BE8D62558039D00D671CA /* Surge */,
+			);
 			productName = ErmitConstant;
 			productReference = A7984F24253CA5D500FD8D1F /* ErmitConstant.app */;
 			productType = "com.apple.product-type.application";
@@ -159,14 +183,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7984F3D253CB4FA00FD8D1F /* GradientDescent.swift in Sources */,
-				A7984F42253CB6B000FD8D1F /* Matrix.swift in Sources */,
 				A7984F2A253CA5D500FD8D1F /* ViewController.swift in Sources */,
 				A7984F28253CA5D500FD8D1F /* AppDelegate.swift in Sources */,
-				A7984F3B253CA8B400FD8D1F /* ErmitConstantSearch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A74BE8D42558038C00D671CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = A74BE8D32558038C00D671CA /* Surge */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A7984F2D253CA5D800FD8D1F /* Main.storyboard */ = {
@@ -351,6 +380,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A74BE8D32558038C00D671CA /* Surge */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Surge;
+		};
+		A74BE8D62558039D00D671CA /* Surge */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Surge;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A7984F1C253CA5D500FD8D1F /* Project object */;
 }
