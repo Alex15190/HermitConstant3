@@ -30,7 +30,7 @@
 
 /* Begin PBXFileReference section */
 		A74BE8D22558032500D671CA /* Surge */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Surge; sourceTree = "<group>"; };
-		A7984F24253CA5D500FD8D1F /* ErmitConstant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErmitConstant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7984F24253CA5D500FD8D1F /* HermitConstant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HermitConstant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7984F27253CA5D500FD8D1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7984F29253CA5D500FD8D1F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A7984F2B253CA5D800FD8D1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		A7984F25253CA5D500FD8D1F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A7984F24253CA5D500FD8D1F /* ErmitConstant.app */,
+				A7984F24253CA5D500FD8D1F /* HermitConstant.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,9 +110,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A7984F23253CA5D500FD8D1F /* ErmitConstant */ = {
+		A7984F23253CA5D500FD8D1F /* HermitConstant */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A7984F34253CA5D800FD8D1F /* Build configuration list for PBXNativeTarget "ErmitConstant" */;
+			buildConfigurationList = A7984F34253CA5D800FD8D1F /* Build configuration list for PBXNativeTarget "HermitConstant" */;
 			buildPhases = (
 				A7984F20253CA5D500FD8D1F /* Sources */,
 				A7984F21253CA5D500FD8D1F /* Frameworks */,
@@ -124,12 +124,12 @@
 			dependencies = (
 				A74BE8D42558038C00D671CA /* PBXTargetDependency */,
 			);
-			name = ErmitConstant;
+			name = HermitConstant;
 			packageProductDependencies = (
 				A74BE8D62558039D00D671CA /* Surge */,
 			);
 			productName = ErmitConstant;
-			productReference = A7984F24253CA5D500FD8D1F /* ErmitConstant.app */;
+			productReference = A7984F24253CA5D500FD8D1F /* HermitConstant.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -147,7 +147,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A7984F1F253CA5D500FD8D1F /* Build configuration list for PBXProject "ErmitConstant" */;
+			buildConfigurationList = A7984F1F253CA5D500FD8D1F /* Build configuration list for PBXProject "HermitConstant" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -160,7 +160,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A7984F23253CA5D500FD8D1F /* ErmitConstant */,
+				A7984F23253CA5D500FD8D1F /* HermitConstant */,
 			);
 		};
 /* End PBXProject section */
@@ -361,7 +361,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A7984F1F253CA5D500FD8D1F /* Build configuration list for PBXProject "ErmitConstant" */ = {
+		A7984F1F253CA5D500FD8D1F /* Build configuration list for PBXProject "HermitConstant" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A7984F32253CA5D800FD8D1F /* Debug */,
@@ -370,7 +370,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A7984F34253CA5D800FD8D1F /* Build configuration list for PBXNativeTarget "ErmitConstant" */ = {
+		A7984F34253CA5D800FD8D1F /* Build configuration list for PBXNativeTarget "HermitConstant" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A7984F35253CA5D800FD8D1F /* Debug */,
