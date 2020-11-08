@@ -10,49 +10,59 @@ import Foundation
 import Surge
 
 class GradientDescent {
-    static let maxIteration = 10000
+    static let maxIteration = 1000
     static let twoDimMatrix = Matrix([[1.0, 0.5], [0.5, 1.0]])
-    
+    static let threeDimMatrix = Matrix([[1.0, 0.5, -0.5], [0.5, 1.0, -0.5], [-0.5, -0.5, 1]])
+    static let fourDimMatrix = Matrix([[1.0, 0.5], [0.5, 1.0]])
+    static let allFoundMatrix = [twoDimMatrix, threeDimMatrix, fourDimMatrix]
+
+    var dim: Int
     var matrix: Matrix<Double>
+    var yArray: [Matrix<Double>] = []
+    private var iteration = 0
 
-    init(matrix: Matrix<Double>) {
-        self.matrix = matrix
+    init(dim: Int) {
+        self.dim = dim
+        matrix = GradientDescent.twoDimMatrix
+        matrix = createFirstPoint(dim)
     }
 
-    func startSearch(dim: Int) -> Matrix<Double>? {
-        return createFirstPoint(dimension: dim)
+    func findMatrix() -> Matrix<Double>? {
+        guard iteration < GradientDescent.maxIteration else {
+            return nil
+        }
+        iteration += 1
+        guard !GradientDescent.allFoundMatrix.contains(matrix), let y = findWrongVector() else {
+            return matrix
+        }
+        yArray.append(contentsOf: y)
+        y.forEach { y in
+            matrix = transpose(y) * matrix * y //+ det((transpose(y) * y))^2
+        }
+        return findMatrix()
+    }
+    
+    private func findWrongVector() -> [Matrix<Double>]? {
+        return [matrix]
     }
 
-    func createFirstPoint(dimension: Int) -> Matrix<Double> {
-        if dimension == 2 {
+    private func createFirstPoint(_ dim: Int) -> Matrix<Double> {
+        guard dim > 1 else {
+            debugPrint("dim should be > 1")
             return GradientDescent.twoDimMatrix
-        } else {
-            let firstMatrix = createFirstPoint(dimension: dimension - 1)
-            let n = dimension - 1
+        }
+        switch dim {
+        case 2:
+            return GradientDescent.twoDimMatrix
+        case 3:
+            return GradientDescent.threeDimMatrix
+        case 4:
+            return GradientDescent.fourDimMatrix
+        default:
+            let n = dim - 1
+            let firstMatrix = createFirstPoint(n)
             //create new matrix of change firstMatrix
             return firstMatrix
-            
         }
-    }
-
-    func nextPoint(_ currentPoint: Matrix<Double>) -> Matrix<Double> {
-        return Matrix()
-    }
-
-    func recFunc(_ point: Matrix<Double>, iteration: Int = 0) -> Matrix<Double>? {
-        guard iteration < GradientDescent.maxIteration else { return nil }
-        if isInPolyhedron(point) {
-            return point
-        } else {
-            return recFunc(nextPoint(point), iteration: iteration + 1)
-        }
-    }
-
-    func isInPolyhedron(_ point: Matrix<Double>) -> Bool {
-        let tmp = transpose(point) * matrix * point
-        guard let det = det(tmp) else {
-            return false
-        }
-        return det >= 1
     }
 }
