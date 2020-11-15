@@ -685,7 +685,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Hermite constant" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -706,16 +706,16 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="HermitConstant" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="225"/>
+                    <view key="view" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="235"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jIK-H9-RB6">
-                                <rect key="frame" x="419" y="193" width="63" height="32"/>
+                                <rect key="frame" x="418" y="203" width="64" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Pw0-GO-AfS"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dJ8-9I-6bn">
+                                <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dJ8-9I-6bn">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -724,18 +724,18 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xaJ-XT-G8K">
-                                <rect key="frame" x="-2" y="0.0" width="484" height="200"/>
+                                <rect key="frame" x="3" y="5" width="474" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="7ir-Bi-7H3"/>
                                 </constraints>
-                                <textFieldCell key="cell" selectable="YES" title="Multiline Label" id="ysn-J3-D4k">
+                                <textFieldCell key="cell" selectable="YES" title="Choose dim and click Start" id="ysn-J3-D4k">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rJM-2h-UQ5">
-                                <rect key="frame" x="3" y="200" width="28" height="20"/>
+                                <rect key="frame" x="3" y="210" width="28" height="20"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Dim" id="WFs-W1-q8V">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -743,7 +743,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C6H-HS-MBl">
-                                <rect key="frame" x="39" y="200" width="50" height="20"/>
+                                <rect key="frame" x="39" y="210" width="50" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="omv-cI-1fh"/>
                                 </constraints>
@@ -759,14 +759,14 @@
                             <constraint firstItem="jIK-H9-RB6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C6H-HS-MBl" secondAttribute="trailing" constant="8" symbolic="YES" id="0Xe-rO-T6H"/>
                             <constraint firstItem="jIK-H9-RB6" firstAttribute="top" secondItem="rJM-2h-UQ5" secondAttribute="top" id="2GS-wS-ulz"/>
                             <constraint firstItem="C6H-HS-MBl" firstAttribute="bottom" secondItem="rJM-2h-UQ5" secondAttribute="bottom" id="8Ab-c7-DYt"/>
-                            <constraint firstItem="xaJ-XT-G8K" firstAttribute="top" secondItem="jIK-H9-RB6" secondAttribute="bottom" id="AM2-Et-JUV"/>
+                            <constraint firstItem="xaJ-XT-G8K" firstAttribute="top" secondItem="jIK-H9-RB6" secondAttribute="bottom" constant="5" id="AM2-Et-JUV"/>
                             <constraint firstAttribute="trailing" secondItem="jIK-H9-RB6" secondAttribute="trailing" constant="5" id="BCg-pa-y2T"/>
                             <constraint firstItem="rJM-2h-UQ5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="5" id="Cud-x3-SQi"/>
-                            <constraint firstAttribute="trailing" secondItem="xaJ-XT-G8K" secondAttribute="trailing" id="Kba-DX-HdO"/>
+                            <constraint firstAttribute="trailing" secondItem="xaJ-XT-G8K" secondAttribute="trailing" constant="5" id="Kba-DX-HdO"/>
                             <constraint firstItem="rJM-2h-UQ5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="5" id="bWW-Hb-ISh"/>
-                            <constraint firstAttribute="bottom" secondItem="xaJ-XT-G8K" secondAttribute="bottom" id="c8T-W3-a49"/>
+                            <constraint firstAttribute="bottom" secondItem="xaJ-XT-G8K" secondAttribute="bottom" constant="5" id="c8T-W3-a49"/>
                             <constraint firstItem="C6H-HS-MBl" firstAttribute="top" secondItem="rJM-2h-UQ5" secondAttribute="top" id="cD3-co-ubE"/>
-                            <constraint firstItem="xaJ-XT-G8K" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hY5-hz-zKs"/>
+                            <constraint firstItem="xaJ-XT-G8K" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="5" id="hY5-hz-zKs"/>
                             <constraint firstItem="C6H-HS-MBl" firstAttribute="leading" secondItem="rJM-2h-UQ5" secondAttribute="trailing" constant="10" id="tNs-Ec-sEw"/>
                             <constraint firstItem="jIK-H9-RB6" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="ti2-XQ-9aG"/>
                             <constraint firstItem="jIK-H9-RB6" firstAttribute="bottom" secondItem="rJM-2h-UQ5" secondAttribute="bottom" id="wUr-5i-hFp"/>

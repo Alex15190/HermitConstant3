@@ -28,7 +28,7 @@ class GradientDescent {
     }
 
     func findMatrix() -> Matrix<Double>? {
-        guard iteration < GradientDescent.maxIteration else {
+        guard dim > 1, iteration < GradientDescent.maxIteration else {
             return nil
         }
         iteration += 1
