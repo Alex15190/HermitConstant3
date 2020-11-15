@@ -10,24 +10,20 @@ import Cocoa
 
 class ViewController: NSViewController {
     @IBOutlet weak var startButton: NSButton!
-    @IBOutlet weak var textView: NSScrollView!
-    var gradientDecent: GradientDescent?
-    
+    @IBOutlet weak var textLabel: NSTextField!
+    @IBOutlet weak var dimTextFiled: NSTextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        gradientDecent = GradientDescent(dim: 2)
-        // Do any additional setup after loading the view.
     }
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
+
     @IBAction func startAction(_ sender: Any) {
-        if let matrix = gradientDecent?.findMatrix() {
-            debugPrint("Matrix: \n \(matrix.description)")
+        let gradientDecent = GradientDescent(dim: Int(dimTextFiled.intValue))
+        if let matrix = gradientDecent.findMatrix() {
+            let dim = gradientDecent.dim
+            textLabel.stringValue = "Matrix \(dim)x\(dim): \n \(matrix.description)"
         } else {
-            debugPrint("Cannot find matrix")
+            textLabel.stringValue = "Cannot find matrix"
         }
     }
 }
