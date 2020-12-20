@@ -39,6 +39,10 @@ public struct Matrix<Scalar> where Scalar: FloatingPoint, Scalar: ExpressibleByF
     public let columns: Int
 
     var grid: [Scalar]
+    
+    public var array: [Scalar] {
+        return grid
+    }
 
     public var shape: Shape {
         if self.rows > self.columns {
