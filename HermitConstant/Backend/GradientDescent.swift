@@ -17,6 +17,7 @@ class GradientDescent {
     static let allFoundMatrix = [twoDimMatrix, threeDimMatrix]
 
     var dim: Int
+    let lambda = 0.001
     var matrix: Matrix<Double>
     var yArray: [Matrix<Double>] = []
     private var iteration = 0
@@ -40,8 +41,12 @@ class GradientDescent {
     }
 
     func findMatrix() -> Matrix<Double>? {
-        guard dim > 1, iteration < GradientDescent.maxIteration else {
+        guard dim > 1 else {
             return nil
+        }
+        guard iteration < GradientDescent.maxIteration else {
+            iteration = 0
+            return matrix
         }
         iteration += 1
         guard !GradientDescent.allFoundMatrix.contains(matrix),
@@ -50,7 +55,8 @@ class GradientDescent {
             return matrix
         }
         yArray.append(contentsOf: y)
-        matrix = transpose(firstY) * matrix * firstY //+ det((transpose(firstY) * firstY))^2
+        let coof = (transpose(firstY) * firstY)[0, 0]
+        matrix = addNum(matr: matrix, lambda * coof)
         return findMatrix()
     }
     
@@ -278,14 +284,19 @@ extension GradientDescent { //Cpp functions
             generatedVectors = vm;
         }
     }
+    
+    
+    func addNum(matr: Matrix<Double>, _ x: Double) -> Matrix<Double> {
+        let numMatr = Matrix(rows: dim, columns: dim, repeatedValue: x)
+        return add(matr, numMatr)
+    }
 }
 
 extension Matrix {
-    
     init(vect: [Scalar]) {
         self.init(rows: vect.count, columns: 1, grid: vect)
     }
-    
+
     mutating func comb(_ x: Int, _ y: Int, _ k: Scalar) {
         for i in 0 ..< columns {
             self[x, i] += k * self[y, i]
