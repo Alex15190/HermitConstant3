@@ -36,6 +36,10 @@ class GradientDescent {
 
     init(dim: Int) {
         self.dim = dim
+        for _ in 0 ..< dim {
+            genVect.append(0)
+            v.append(0)
+        }
         matrix = GradientDescent.twoDimMatrix
         matrix = createFirstPoint(dim)
     }
@@ -49,8 +53,8 @@ class GradientDescent {
             return matrix
         }
         iteration += 1
+        let y = findWrongVector()
         guard !GradientDescent.allFoundMatrix.contains(matrix),
-              let y = findWrongVector(),
               let firstY = y.first else {
             return matrix
         }
@@ -60,8 +64,14 @@ class GradientDescent {
         return findMatrix()
     }
     
-    private func findWrongVector() -> [Matrix<Double>]? {
-        return nil
+    private func findWrongVector() -> [Matrix<Double>] {
+        generateVectorsFor(matrix)
+        generatedVectors.forEach { vector in
+            if vector.isZero() {
+                generatedVectors.removeAll { $0 == vector }
+            }
+        }
+        return generatedVectors
     }
 
     private func createFirstPoint(_ dim: Int) -> Matrix<Double> {
@@ -99,10 +109,23 @@ class GradientDescent {
 }
 
 extension GradientDescent { //Cpp functions
+    
+    func resetStaticVars() {
+        generatedVectors.removeAll()
+        genVect.removeAll()
+        v.removeAll()
+        for _ in 0 ..< dim {
+            genVect.append(0)
+            v.append(0)
+        }
+    }
+    
     func generateVectorsFor(_ f: Matrix<Double>) {
+        resetStaticVars()
 //        generatedVectors.clear();
 //        Matrix e = Matrix(N, zeroArr);
-        let e = Matrix(rows: dim, columns: dim, repeatedValue: 0)
+        let e = edMatr(dim: dim)
+//        let e = Matrix(rows: dim, columns: dim, repeatedValue: 0)
         let isNeededGenVect = recGenerateVectors(f, e, 0)
         //create vertor/vectors from int to Matrix
         if isNeededGenVect {
@@ -125,11 +148,11 @@ extension GradientDescent { //Cpp functions
     func recGenerateVectors(_ d: Matrix<Double> , _ p: Matrix<Double> , _ n: Int ) -> Bool {
         var d = d
         var p = p
-        if (d[n][n] > 0) {
+        if (d[n, n] > 0) {
             if (n < d.rows - 1) {
                 //преобразования....
                 for i in n+1 ..< d.rows {
-                    let coof = (d[i][n] / d[n][n]) * (-1)
+                    let coof = (d[i, n] / d[n, n]) * (-1)
                     d.comb(i, n, coof)
                     p.comb(i, n, coof)
                 }
@@ -137,10 +160,10 @@ extension GradientDescent { //Cpp functions
                 d.updateDiagonalMatrix()
                 return recGenerateVectors(d, p, n + 1)
             } else {
-                genVect[n] = abs(1 / Double(d[n][n]))
+                genVect[n] = abs(1 / Double(d[n, n]))
                 v[n] = genVect[n]
                 //cout << "1 / (double)d[n][n] = " << 1 / (double)d[n][n] << " v["<< n << "] = " << v[n] << endl;
-                history = pow(genVect[n], 2) * d[n][n]
+                history = pow(genVect[n], 2) * d[n, n]
                 reverceRecGenVectorForHigherZeroCase(d: d, p: p, n: n)
                 return true
             }
@@ -152,14 +175,14 @@ extension GradientDescent { //Cpp functions
             return false
         } else {
             let first = sumOfDiagonalElements(d, n - 1)
-            let second = -d[n][n]
+            let second = -d[n, n]
             let b = p′
             genVect[n] = sqrt(first / second)
             
             for i in (0 ... n-2).reversed() {
                 var x = 0.0
                 for k in 1 ..< n {
-                    x += b[k][i] * genVect[k]
+                    x += b[k, i] * genVect[k]
                 }
                 genVect[i] = x
             }
@@ -193,16 +216,16 @@ extension GradientDescent { //Cpp functions
         if (n > 0) {
             //востановить
             for i in n ..< d.rows {
-                let coof = p[i][n - 1] * (-1)
+                let coof = p[i, n - 1] * (-1)
                 d.comb(i, n - 1, coof)
                 p.comb(i, n - 1, coof)
             }
             d.updateDiagonalMatrix()
             //посчитать элемент вектора n-1
-            let coof = d[n - 1][n - 1]
+            let coof = d[n - 1, n - 1]
             var xi = 0.0
             for i in n ..< d.rows {
-                xi -= d[i][n - 1] / coof
+                xi -= d[i, n - 1] / coof
             }
             genVect[n - 1] = xi
             //рекурсивный вызов
@@ -222,7 +245,7 @@ extension GradientDescent { //Cpp functions
             //cout << "p" << endl << p << endl;
             //bad?
             for i in n + 1 ..< d.rows {
-                let coof = p[i][n] * (-1)
+                let coof = p[i, n] * (-1)
                 d.comb(i, n, coof)
                 p.comb(i, n, coof)
             }
@@ -237,16 +260,16 @@ extension GradientDescent { //Cpp functions
             var a = 0.0 //bad
 
             for i in n + 1 ..< d.rows {
-                a += d[i][n] * Double(v[i])
+                a += d[i, n] * Double(v[i])
             }
             //
             let b = 1 - history
-            let c = p[n][n] //bad?
+            let c = p[n, n] //bad?
             let xi = sqrt(abs(b / c)) - a
             //cout << "history = " << history << endl;
             //cout << "xi = " << xi << endl;
             genVect[n] = abs(xi)
-            let coof = d[n][n]
+            let coof = d[n, n]
             history += coof * (pow(Double(v[n]) + a, 2))
             //рекурсивный вызов
             for k in (-1) * intGenVect ... intGenVect {
@@ -284,11 +307,24 @@ extension GradientDescent { //Cpp functions
             generatedVectors = vm;
         }
     }
-    
-    
+
     func addNum(matr: Matrix<Double>, _ x: Double) -> Matrix<Double> {
         let numMatr = Matrix(rows: dim, columns: dim, repeatedValue: x)
         return add(matr, numMatr)
+    }
+    
+    func edMatr(dim: Int) -> Matrix<Double> {
+        var arr = [Double]()
+        for i in 0 ..< dim {
+            for j in 0 ..< dim {
+                if i == j {
+                    arr.append(1)
+                } else {
+                    arr.append(0)
+                }
+            }
+        }
+        return Matrix(rows: dim, columns: dim, grid: arr)
     }
 }
 
@@ -311,5 +347,15 @@ extension Matrix {
                 }
             }
         }
+    }
+    
+    func isZero() -> Bool {
+        var result = true
+        array.forEach {
+            if $0 != 0 {
+                result = false
+            }
+        }
+        return result
     }
 }
