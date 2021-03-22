@@ -980,3 +980,41 @@ public func eigenDecompose(_ lhs: Matrix<Double>) throws -> MatrixEigenDecomposi
 
     return MatrixEigenDecompositionResult<Double>(rowCount: lhs.rows, eigenValueRealParts: eigenValueRealParts, eigenValueImaginaryParts: eigenValueImaginaryParts, leftEigenVectorWork: leftEigenVectorWork, rightEigenVectorWork: rightEigenVectorWork)
 }
+
+public extension Matrix {
+    mutating func addJtoIwithC(i: Int, j: Int, c: Scalar) {
+        for k in 0 ..< self.rows {
+            self.grid[k * self.rows + i] += self.grid[k * self.rows + j] * c
+        }
+    }
+    
+    func item(_ i: Int, _ j: Int) -> Scalar {
+        return grid[i * self.rows + j]
+    }
+    
+    mutating func makeSymmetrical() {
+        for i in 0 ..< self.rows {
+            for j in i + 1 ..< self.columns {
+                grid[j * self.rows + i] = grid[i * self.rows + j]
+            }
+        }
+    }
+    
+    mutating func addRowsAndColumns(_ row: Int, _ column: Int) {
+        let newRows = self.rows + row
+        let newColumns = self.columns + column
+        var newGrid = [Scalar]()
+        for i in 0 ..< newRows {
+            for j in 0 ..< newColumns {
+                if i < self.rows, j < self.columns {
+                    newGrid.append(self.grid[i * self.rows + j])
+                } else if i == j{
+                    newGrid.append(1.0)
+                } else {
+                    newGrid.append(0.0)
+                }
+            }
+        }
+        self = Matrix<Scalar>(rows: newRows, columns: newColumns, grid: newGrid)
+    }
+}
