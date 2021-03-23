@@ -10,7 +10,7 @@ import Cocoa
 
 class ViewController: NSViewController {
     @IBOutlet weak var startButton: NSButton!
-    @IBOutlet weak var textLabel: NSTextField!
+    @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var dimTextFiled: NSTextField!
 
     override func viewDidLoad() {
@@ -21,10 +21,16 @@ class ViewController: NSViewController {
         let gradientDecent = GradientDescent(dim: Int(dimTextFiled.intValue))
         if let matrix = gradientDecent.findMatrix() {
             let dim = gradientDecent.dim
-            textLabel.stringValue = "Matrix \(dim)x\(dim): \n \(matrix.description)"
+            appendMessage("Matrix \(dim)x\(dim): \n \(matrix.description)")
         } else {
-            textLabel.stringValue = "Cannot find matrix"
+            appendMessage("Cannot find matrix")
         }
+    }
+    
+    func appendMessage(_ message: String) {
+        textField.stringValue = message + "\n"
+//        let shouldScroll = textField.visibleRect.maxY != textField.bounds.maxY
+//        textField.scrollToEndOfDocument(self)
     }
 }
 

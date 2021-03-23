@@ -70,7 +70,7 @@ class Common {
         case .zero:
             vectors = zeroCase(a: a, b: b, index: index)
         case .negative:
-            vectors = negativeCase(a: a, b: b, index: index)
+            vectors = negativeCase(a: a, b: b, n: index)
         case .positive:
             vectors = positiveCase(a: a, b: b, index: index)
         }
@@ -82,8 +82,21 @@ class Common {
         return vectors
     }
 
-    func negativeCase(a: Matrix<Double>, b: Matrix<Double>, index: Int) -> [Matrix<Double>] {
+    func negativeCase(a: Matrix<Double>, b: Matrix<Double>, n: Int) -> [Matrix<Double>] {
         var vectors = [Matrix<Double>]()
+        let first = d.sumOfDiagonalElement(n) //or index - 1
+        let second = -d.item(n, n) // -d[n][n];
+//        Matrix b = p.transpost();
+        var genVect = Matrix<Double>(rows: 1, columns: f.columns, repeatedValue: 0)
+        genVect.grid[n] = sqrt(first / second)
+        for i in (0 ... n - 2).reversed() {
+            var x = 0.0
+            for k in 1 ..< n {
+                x += b.item(k, i) * genVect.grid[k] //Double check this method!
+            }
+            genVect.grid[i] = x;
+        }
+        vectors.append(genVect)
         return vectors
     }
 

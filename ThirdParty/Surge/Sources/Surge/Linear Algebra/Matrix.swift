@@ -38,7 +38,7 @@ public struct Matrix<Scalar> where Scalar: FloatingPoint, Scalar: ExpressibleByF
     public let rows: Int
     public let columns: Int
 
-    var grid: [Scalar]
+    public var grid: [Scalar]
 
     public var shape: Shape {
         if self.rows > self.columns {
@@ -987,11 +987,11 @@ public extension Matrix {
             self.grid[k * self.rows + i] += self.grid[k * self.rows + j] * c
         }
     }
-    
+
     func item(_ i: Int, _ j: Int) -> Scalar {
         return grid[i * self.rows + j]
     }
-    
+
     mutating func makeSymmetrical() {
         for i in 0 ..< self.rows {
             for j in i + 1 ..< self.columns {
@@ -999,7 +999,7 @@ public extension Matrix {
             }
         }
     }
-    
+
     mutating func addRowsAndColumns(_ row: Int, _ column: Int) {
         let newRows = self.rows + row
         let newColumns = self.columns + column
@@ -1016,5 +1016,13 @@ public extension Matrix {
             }
         }
         self = Matrix<Scalar>(rows: newRows, columns: newColumns, grid: newGrid)
+    }
+
+    func sumOfDiagonalElement(_ index: Int) -> Scalar {
+        var counter: Scalar = 0.0
+        for i in 0 ..< index {
+            counter += self.item(i, i)
+        }
+        return counter
     }
 }
