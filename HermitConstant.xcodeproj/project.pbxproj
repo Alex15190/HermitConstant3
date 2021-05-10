@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A74BE8D72558039D00D671CA /* Surge in Frameworks */ = {isa = PBXBuildFile; productRef = A74BE8D62558039D00D671CA /* Surge */; };
+		A7545718262DFA59002E2ECF /* InPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7545717262DFA59002E2ECF /* InPolygon.swift */; };
 		A77EC23B25FF8C89007DCC1E /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77EC23A25FF8C89007DCC1E /* Common.swift */; };
 		A7984F28253CA5D500FD8D1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7984F27253CA5D500FD8D1F /* AppDelegate.swift */; };
 		A7984F2A253CA5D500FD8D1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7984F29253CA5D500FD8D1F /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		A74BE8D22558032500D671CA /* Surge */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Surge; sourceTree = "<group>"; };
+		A7545717262DFA59002E2ECF /* InPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPolygon.swift; sourceTree = "<group>"; };
 		A77EC23A25FF8C89007DCC1E /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		A7984F24253CA5D500FD8D1F /* HermitConstant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HermitConstant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7984F27253CA5D500FD8D1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				A7984F3C253CB4FA00FD8D1F /* GradientDescent.swift */,
 				A77EC23A25FF8C89007DCC1E /* Common.swift */,
+				A7545717262DFA59002E2ECF /* InPolygon.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				A7984F3D253CB4FA00FD8D1F /* GradientDescent.swift in Sources */,
 				A7984F2A253CA5D500FD8D1F /* ViewController.swift in Sources */,
 				A7984F28253CA5D500FD8D1F /* AppDelegate.swift in Sources */,
+				A7545718262DFA59002E2ECF /* InPolygon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

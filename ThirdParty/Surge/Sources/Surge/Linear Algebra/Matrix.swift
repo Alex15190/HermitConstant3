@@ -1009,7 +1009,7 @@ public extension Matrix {
                 if i < self.rows, j < self.columns {
                     newGrid.append(self.grid[i * self.rows + j])
                 } else if i == j{
-                    newGrid.append(1.0)
+                    newGrid.append(1)
                 } else {
                     newGrid.append(0.0)
                 }
@@ -1018,9 +1018,9 @@ public extension Matrix {
         self = Matrix<Scalar>(rows: newRows, columns: newColumns, grid: newGrid)
     }
 
-    func sumOfDiagonalElement(_ index: Int) -> Scalar {
+    func sumOfDiagonalElement(from: Int = 0, to: Int) -> Scalar {
         var counter: Scalar = 0.0
-        for i in 0 ..< index {
+        for i in from ... to {
             counter += self.item(i, i)
         }
         return counter

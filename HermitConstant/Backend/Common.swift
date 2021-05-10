@@ -23,6 +23,7 @@ class Common {
 
     var genVect: Matrix<Double>
     var v: Matrix<Double>
+    var type: ResultType = .positive
     var history = 0.0 //for higherOneCase
     
     var vm = [Matrix<Double>]()
@@ -40,7 +41,7 @@ class Common {
         let result = recConfigPD(i: 0)
         wrongVectors = generateWrongVectors(type: result.0, index: result.1)
     }
-//    среда 12 20
+
     //MARK: Split matrix
     func recConfigPD(i: Int) -> (ResultType, Int) {
         guard i >= 0 else {
@@ -74,6 +75,7 @@ class Common {
         let a = d
         let b = inv(p) //Double check this
         var vectors = [Matrix<Double>]()
+        self.type = type
         switch type {
         case .zero:
             vectors = zeroCase(a: a, b: b, n: index)
@@ -95,16 +97,23 @@ class Common {
 
     func negativeCase(a: Matrix<Double>, b: Matrix<Double>, n: Int) -> [Matrix<Double>] {
         var vectors = [Matrix<Double>]()
-        let first = d.sumOfDiagonalElement(n) //or index - 1
+        let first = d.sumOfDiagonalElement(from: 0, to: n - 1) - 1 //or index - 1
         let second = -d.item(n, n) // -d[n][n];
         genVect.grid[n] = sqrt(first / second)
-        for i in (0 ... n - 2).reversed() {
-            var x = 0.0
-            for k in 1 ..< n {
-                x += b.item(k, i) * genVect.grid[k]
+        for k in (0 ... n-1).reversed() {
+            var temp = 0.0
+            for i in k + 1 ... n {
+                temp -= b.item(k, i) * genVect.grid[i]
             }
-            genVect.grid[i] = x;
+            genVect.grid[k] = temp
         }
+//        for i in (0 ... n - 2).reversed() {
+//            var x = 0.0
+//            for k in 1 ..< n {
+//                x += b.item(k, i) * genVect.grid[k]
+//            }
+//            genVect.grid[i] = x; //Thread 1: Fatal error: Index out of range n == 1
+//        }
         vectors.append(genVect)
         return vectors
     }
@@ -117,8 +126,7 @@ class Common {
         let vectors = reverseRecGenVectorForHigherZeroCase(d: d, p: p, n: n)
         return vectors
     }
-    
-    //cpp code here!
+
     func reverseRecGenVectorForZeroCase(d: Matrix<Double>, p: Matrix<Double>, n: Int) {
         var d = d
         var p = p
@@ -135,7 +143,7 @@ class Common {
             let coof = d.item(n-1, n-1)
             var xi = 0.0
             for i in n ..< d.rows {
-                xi -= d[i][n - 1] / coof;
+                xi -= d.item(i, n-1) / coof;
             }
             genVect.grid[n-1] = xi
             //рекурсивный вызов
@@ -158,7 +166,7 @@ class Common {
         return vm
     }
 
-    func higherZeroCaseRecFunc(d: Matrix<Double>, p: Matrix<Double>, n: Int, vReverce: [Int]/*, vm: [Matrix<Double>]*/) { //TODO: vector<Matrix>* vm
+    func higherZeroCaseRecFunc(d: Matrix<Double>, p: Matrix<Double>, n: Int, vReverce: [Int]) {
         var d = d
         var p = p
         var vReverce = vReverce
@@ -198,7 +206,6 @@ class Common {
                 v.grid[n] = Double(k)
                 let vReverceDouble = vReverce.reversed().compactMap { Double($0) }
                 vm.append(Matrix(rows: 1, columns: vReverceDouble.count, grid: vReverceDouble))
-//                vm->push_back(Matrix(vReverce));
                 vReverce.removeLast()
             }
         }

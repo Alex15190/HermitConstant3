@@ -37,12 +37,24 @@ class GradientDescent {
         }
         let y = findWrongVector()
         guard y.count > 0 else {
-            return matrix
+            let inPolygon = InPolygon(matrix: matrix)
+            return inPolygon.findRightMatrix()
         }
         yArray.append(contentsOf: y)
-        y.forEach { y in
-            matrix = transpose(y) * matrix * y //+ det((transpose(y) * y))^2
+        if let y = y.first {
+            let det = (y * transpose(y)).grid[0]
+            let alpha = pow(det / 3, 2)
+//            matrix = y * matrix * transpose(y)
+            matrix.grid = matrix.grid.compactMap { $0 + det * alpha } //это + alpha к каждому элементу матрицы
         }
+//        y.forEach { y in
+//            let temp = (transpose(y) * y)
+//            if let det = det(temp) {
+//                let alpha = pow(det, 2)
+//                matrix = transpose(y) * matrix * y
+//                matrix.grid = matrix.grid.compactMap { $0 + alpha } //это + alpha к каждому элементу матрицы
+//            }
+//        }
         return findMatrix()
     }
 
