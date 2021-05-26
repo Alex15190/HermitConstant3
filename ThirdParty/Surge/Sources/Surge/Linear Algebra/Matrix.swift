@@ -988,6 +988,12 @@ public extension Matrix {
         }
     }
 
+    mutating func addJtoIwithCVerticaly(i: Int, j: Int, c: Scalar) {
+        for k in 0 ..< self.rows {
+            self.grid[i * self.rows + k] += self.grid[j * self.rows + k] * c
+        }
+    }
+    
     func item(_ i: Int, _ j: Int) -> Scalar {
         return grid[i * self.rows + j]
     }
@@ -1008,7 +1014,7 @@ public extension Matrix {
             for j in 0 ..< newColumns {
                 if i < self.rows, j < self.columns {
                     newGrid.append(self.grid[i * self.rows + j])
-                } else if i == j{
+                } else if i == j {
                     newGrid.append(1)
                 } else {
                     newGrid.append(0.0)
@@ -1022,6 +1028,14 @@ public extension Matrix {
         var counter: Scalar = 0.0
         for i in from ... to {
             counter += self.item(i, i)
+        }
+        return counter
+    }
+    
+    func multOfDiagonalElements() -> Scalar {
+        var counter: Scalar = 1
+        for i in 0 ..< rows {
+            counter *= self.item(i, i)
         }
         return counter
     }

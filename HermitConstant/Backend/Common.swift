@@ -99,13 +99,13 @@ class Common {
         var vectors = [Matrix<Double>]()
         let first = d.sumOfDiagonalElement(from: 0, to: n - 1) - 1 //or index - 1
         let second = -d.item(n, n) // -d[n][n];
-        genVect.grid[n] = sqrt(first / second)
+        genVect.grid[n] = sqrt(first / second).rounded()
         for k in (0 ... n-1).reversed() {
             var temp = 0.0
             for i in k + 1 ... n {
                 temp -= b.item(k, i) * genVect.grid[i]
             }
-            genVect.grid[k] = temp
+            genVect.grid[k] = temp.rounded()
         }
 //        for i in (0 ... n - 2).reversed() {
 //            var x = 0.0
@@ -133,10 +133,12 @@ class Common {
         if (n > 0) {
             //востановить
             for i in n ..< d.rows {
-                let coof = p.item(i, n - 1) * (-1);
+                let coof = p.item(n - 1, i) * (-1);
                 //i += j * k
-                d.addJtoIwithC(i: i, j: n-1, c: coof) //или наоборот
-                p.addJtoIwithC(i: i, j: n-1, c: coof) //или наоборот
+                d.addJtoIwithCVerticaly(i: n-1, j: i, c: coof) //или наоборот
+                p.addJtoIwithCVerticaly(i: n-1, j: i, c: coof) //или наоборот
+//                d.addJtoIwithC(i: i, j: n-1, c: coof) //или наоборот
+//                p.addJtoIwithC(i: i, j: n-1, c: coof) //или наоборот
             }
             d.makeSymmetrical()
             //посчитать элемент вектора n-1
@@ -145,7 +147,7 @@ class Common {
             for i in n ..< d.rows {
                 xi -= d.item(i, n-1) / coof;
             }
-            genVect.grid[n-1] = xi
+            genVect.grid[n-1] = xi.rounded()
             //рекурсивный вызов
             reverseRecGenVectorForZeroCase(d: d, p: p, n: n-1)
         }

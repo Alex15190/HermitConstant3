@@ -17,6 +17,9 @@ class InPolygon {
     var matrix: Matrix<Double>
     var generatedMatrix = [Matrix<Double>]()
     var alpha = 0.5
+    var isPositive: Bool {
+        return alpha >= 0
+    }
     var dim: Int {
         return matrix.rows
     }
@@ -51,33 +54,49 @@ class InPolygon {
 
     func generateMatrix() {
         generatedMatrix = []
-        let n = ((dim-1) * dim / 2) + dim
+        let n = ((dim-1) * dim / 2)
         recGenMatrix(n: n, nonZeroItems: InPolygon.nonZeroElements, arr: [])
     }
 
     func findRightMatrix() -> Matrix<Double> {
         generateMatrix()
-        generatedMatrix.forEach { direction in
-            while (alpha >= InPolygon.minAlpha) {
+        generatedMatrix.reversed().forEach { direction in
+            while (fabs(alpha) >= InPolygon.minAlpha) {
                 let newMatrix = makeNewMatrix(direction, alpha: alpha)
                 if (det(matrix) ?? 0 > det(newMatrix) ?? 0) {
                     let common = Common(f: newMatrix)
                     common.findWrongVectors()
-                    if (common.wrongVectors.count == 0) {
+                    if (common.wrongVectors.count == 0), newMatrix.multOfDiagonalElements() != 0 {
                         if common.type == .negative {
-                            break //TODO: Remove it! Added because inifinite adding to the matrix
+                            if isPositive {
+                                alpha *= -1
+                            } else {
+                                alpha *= -1
+                                alpha *= 0.5
+                            }
+                            continue //TODO: Remove it! Added because inifinite adding to the matrix
                         }
                         matrix = newMatrix
                         debugPrint("New matrix is: \n")
                         debugPrint(newMatrix)
-                        debugPrint("\n\n")
+                        debugPrint("Det = \(det(newMatrix) ?? 0.0)")
                         continue
                     } else {
-                        alpha *= alpha
+                        if isPositive {
+                            alpha *= -1
+                        } else {
+                            alpha *= -1
+                            alpha *= 0.5
+                        }
                         continue
                     }
                 } else {
-                    alpha *= alpha
+                    if isPositive {
+                        alpha *= -1
+                    } else {
+                        alpha *= -1
+                        alpha *= 0.5
+                    }
                 }
             }
             alpha = 0.5
@@ -95,12 +114,14 @@ class InPolygon {
         for i in 0 ..< dim * dim {
             let column = i % dim
             let row = i / dim
-            if column >= row {
+            if column > row {
                 grid.append(arr[index])
                 index += 1
-            } else {
+            } else if column < row {
                 let newIndex = row + column * dim
                 grid.append(grid[newIndex])
+            } else {
+                grid.append(0)
             }
         }
         let newMatrix = Matrix(rows: dim, columns: dim, grid: grid)
