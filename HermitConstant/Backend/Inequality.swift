@@ -13,8 +13,8 @@ class Inequality {
     var matrix: Matrix<Double>
     var alphaRow: Int
     var alphaColumn: Int
-    var leftBound = -10000.0
-    var rightBound = 10000.0
+    var lowerBound = -10000.0
+    var upperBound = 10000.0
     var genVectors = [[Double]]()
 
     init(matrix: Matrix<Double>, row: Int, column: Int) {
@@ -28,10 +28,14 @@ class Inequality {
     }
 
     func recGenVect(n: Int, arr: [Double]) {
+        var arr = arr
         if n > 0 {
-            recGenVect(n: n - 1, arr: arr + 1)
-            recGenVect(n: n - 1, arr: arr + 0)
-            recGenVect(n: n - 1, arr: arr + (-1))
+            let lowerBound = -1//(matrix.rows / 2) < n ? 0 : -1
+            for i in lowerBound ... 1 {
+                arr.append(Double(i))
+                recGenVect(n: n - 1, arr: arr)
+                arr.removeLast()
+            }
         } else {
             genVectors.append(arr)
         }
@@ -43,12 +47,12 @@ class Inequality {
             guard vect.count == matrix.rows else { return }
             if let result = calcAlpha(vect: vect) {
                 if result.isPositive {
-                    if result.alpha < rightBound {
-                        rightBound = result.alpha
+                    if result.alpha > lowerBound {
+                        lowerBound = result.alpha
                     }
                 } else {
-                    if result.alpha > leftBound {
-                        leftBound = result.alpha
+                    if result.alpha < upperBound {
+                        upperBound = result.alpha
                     }
                 }
             }
@@ -58,13 +62,13 @@ class Inequality {
 
     func calcAlpha(vect: [Double]) -> (alpha: Double, isPositive: Bool)? {
         var leftSide = 0.0
-        var rightSide = 0.0
+        var rightSide = 1.0
         for row in 0 ..< matrix.rows {
             for column in row ..< matrix.columns {
                 if row == column {
                     rightSide -= vect[row] * vect[row] // * matrix.item(row, row) * matrix.item(row, row)
                 } else if (row == alphaRow && column == alphaColumn) || (row == alphaColumn && column == alphaRow) {
-                    leftSide += 2 * matrix.item(row, column) * vect[row] * vect[column]
+                    leftSide += 2 * (vect[row] * vect[column] + matrix.item(row, column))
                 } else {
                     rightSide -= 2 * matrix.item(row, column) * vect[row] * vect[column]
                 }

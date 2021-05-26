@@ -998,6 +998,11 @@ public extension Matrix {
         return grid[i * self.rows + j]
     }
 
+    mutating func addAlphaTo(alpha: Scalar, _ i: Int, _ j: Int) {
+        grid[i * self.rows + j] = grid[i * self.rows + j] + alpha
+        grid[j * self.rows + i] = grid[i * self.rows + j]
+    }
+
     mutating func makeSymmetrical() {
         for i in 0 ..< self.rows {
             for j in i + 1 ..< self.columns {
