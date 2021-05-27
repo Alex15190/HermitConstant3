@@ -13,7 +13,6 @@ class GradientDescent {
     static let maxIteration = 1000
     static let twoDimMatrix = Matrix([[1.0, 0.5], [0.5, 1.0]])
     static let threeDimMatrix = Matrix([[1.0, 0.5, -0.5], [0.5, 1.0, -0.5], [-0.5, -0.5, 1]])
-//    static let fourDimMatrix = Matrix([[1.0, 0.5], [0.5, 1.0]])
     static let allFoundMatrix = [twoDimMatrix, threeDimMatrix]
 
     var dim: Int
@@ -44,17 +43,8 @@ class GradientDescent {
         if let y = y.first {
             let det = (y * transpose(y)).grid[0]
             let alpha = pow(det / 3, 2)
-//            matrix = y * matrix * transpose(y)
             matrix.grid = matrix.grid.compactMap { $0 + det * alpha } //это + alpha к каждому элементу матрицы
         }
-//        y.forEach { y in
-//            let temp = (transpose(y) * y)
-//            if let det = det(temp) {
-//                let alpha = pow(det, 2)
-//                matrix = transpose(y) * matrix * y
-//                matrix.grid = matrix.grid.compactMap { $0 + alpha } //это + alpha к каждому элементу матрицы
-//            }
-//        }
         return findMatrix()
     }
 
@@ -74,8 +64,6 @@ class GradientDescent {
             return GradientDescent.twoDimMatrix
         case 3:
             return GradientDescent.threeDimMatrix
-//        case 4:
-//            return GradientDescent.fourDimMatrix
         default:
             let n = dim - 1
             var firstMatrix = createFirstPoint(n)

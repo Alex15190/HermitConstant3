@@ -107,13 +107,6 @@ class Common {
             }
             genVect.grid[k] = temp.rounded()
         }
-//        for i in (0 ... n - 2).reversed() {
-//            var x = 0.0
-//            for k in 1 ..< n {
-//                x += b.item(k, i) * genVect.grid[k]
-//            }
-//            genVect.grid[i] = x; //Thread 1: Fatal error: Index out of range n == 1
-//        }
         vectors.append(genVect)
         return vectors
     }
@@ -134,11 +127,8 @@ class Common {
             //востановить
             for i in n ..< d.rows {
                 let coof = p.item(n - 1, i) * (-1);
-                //i += j * k
-                d.addJtoIwithCVerticaly(i: n-1, j: i, c: coof) //или наоборот
-                p.addJtoIwithCVerticaly(i: n-1, j: i, c: coof) //или наоборот
-//                d.addJtoIwithC(i: i, j: n-1, c: coof) //или наоборот
-//                p.addJtoIwithC(i: i, j: n-1, c: coof) //или наоборот
+                d.addJtoIwithCVerticaly(i: n-1, j: i, c: coof)
+                p.addJtoIwithCVerticaly(i: n-1, j: i, c: coof)
             }
             d.makeSymmetrical()
             //посчитать элемент вектора n-1
@@ -155,7 +145,6 @@ class Common {
 
     func reverseRecGenVectorForHigherZeroCase(d: Matrix<Double>, p: Matrix<Double>, n: Int) -> [Matrix<Double>] {
         if (n > 0) {
-//            var vm = [Matrix<Double>]()
             var vReverce = [Int]()
             for k in (-1) * Int(genVect.grid[n]) ... Int(genVect.grid[n]) {
                 vReverce.append(k)
@@ -163,7 +152,6 @@ class Common {
                 higherZeroCaseRecFunc(d: d, p: p, n: n-1, vReverce: vReverce)
                 vReverce.removeLast()
             }
-//            generatedVectors = vm;
         }
         return vm
     }
@@ -176,8 +164,8 @@ class Common {
             //востановить
             for i in n+1 ..< d.rows {
                 let coof = p.item(i, n) * (-1)
-                d.addJtoIwithC(i: i, j: n, c: coof) //d = d.comb(i, n, coof);
-                p.addJtoIwithC(i: i, j: n, c: coof) //p = p.comb(i, n, coof);
+                d.addJtoIwithC(i: i, j: n, c: coof)
+                p.addJtoIwithC(i: i, j: n, c: coof)
             }
             //
             d.makeSymmetrical()

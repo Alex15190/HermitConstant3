@@ -30,8 +30,7 @@ class Inequality {
     func recGenVect(n: Int, arr: [Double]) {
         var arr = arr
         if n > 0 {
-            let lowerBound = -1//(matrix.rows / 2) < n ? 0 : -1
-            for i in lowerBound ... 1 {
+            for i in -1 ... 1 {
                 arr.append(Double(i))
                 recGenVect(n: n - 1, arr: arr)
                 arr.removeLast()
@@ -66,7 +65,7 @@ class Inequality {
         for row in 0 ..< matrix.rows {
             for column in row ..< matrix.columns {
                 if row == column {
-                    rightSide -= vect[row] * vect[row] // * matrix.item(row, row) * matrix.item(row, row)
+                    rightSide -= vect[row] * vect[row]
                 } else if (row == alphaRow && column == alphaColumn) || (row == alphaColumn && column == alphaRow) {
                     leftSide += 2 * (vect[row] * vect[column] + matrix.item(row, column))
                 } else {

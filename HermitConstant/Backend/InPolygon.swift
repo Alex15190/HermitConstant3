@@ -28,38 +28,7 @@ class InPolygon {
     init(matrix: Matrix<Double>) {
         self.matrix = matrix
     }
-    
-    func recGenMatrix(n: Int, nonZeroItems: Int, arr: [Double]) {
-        var arr = arr
-        if n > 0 {
-            if (n > nonZeroItems) {
-                arr.append(0)
-                recGenMatrix(n: n-1, nonZeroItems: nonZeroItems, arr: arr)
-                arr.removeLast()
-            }
 
-            if (nonZeroItems > 0) {
-                arr.append(-1)
-                recGenMatrix(n: n-1, nonZeroItems: nonZeroItems-1, arr: arr)
-                arr.removeLast()
-
-                arr.append(1)
-                recGenMatrix(n: n-1, nonZeroItems: nonZeroItems-1, arr: arr)
-                arr.removeLast()
-            }
-        } else {
-            let newMatrix = makeMatrixWithGrid(arr: arr)
-            generatedMatrix.append(newMatrix)
-        }
-    }
-
-    func generateMatrix() {
-        generatedMatrix = []
-        let n = ((dim-1) * dim / 2)
-        recGenMatrix(n: n, nonZeroItems: InPolygon.nonZeroElements, arr: [])
-    }
-
-    
     func generateVectors() {
         recGenVect(n: 2, dim: matrix.rows, arr: [])
     }
@@ -87,11 +56,9 @@ class InPolygon {
             genVectors.append(arr)
         }
     }
-    
-    
+
     func findRightMatrix() -> Matrix<Double> {
         generateVectors()
-//        genVectors = [[3, 0], [3, 1], [3, 2]]
         genVectors.forEach { vector in
             guard vector.count == 2 else { return }
             let row = vector[0]
@@ -111,57 +78,7 @@ class InPolygon {
                 print("Can't go any further")
             }
         }
-        
-        
-        
-//        generateMatrix()
-//        generatedMatrix.reversed().forEach { direction in
-//            while (fabs(alpha) >= InPolygon.minAlpha) {
-//                let newMatrix = makeNewMatrix(direction, alpha: alpha)
-//                if (det(matrix) ?? 0 > det(newMatrix) ?? 0) {
-//                    let common = Common(f: newMatrix)
-//                    common.findWrongVectors()
-//                    if (common.wrongVectors.count == 0), newMatrix.multOfDiagonalElements() != 0 {
-//                        if common.type == .negative {
-//                            if isPositive {
-//                                alpha *= -1
-//                            } else {
-//                                alpha *= -1
-//                                alpha *= 0.5
-//                            }
-//                            continue //TODO: Remove it! Added because inifinite adding to the matrix
-//                        }
-//                        matrix = newMatrix
-//                        debugPrint("New matrix is: \n")
-//                        debugPrint(newMatrix)
-//                        debugPrint("Det = \(det(newMatrix) ?? 0.0)")
-//                        continue
-//                    } else {
-//                        if isPositive {
-//                            alpha *= -1
-//                        } else {
-//                            alpha *= -1
-//                            alpha *= 0.5
-//                        }
-//                        continue
-//                    }
-//                } else {
-//                    if isPositive {
-//                        alpha *= -1
-//                    } else {
-//                        alpha *= -1
-//                        alpha *= 0.5
-//                    }
-//                }
-//            }
-//            alpha = 0.5
-//        }
-        print("Matrix det = \(det(matrix))")
         return matrix
-    }
-    
-    func makeNewMatrix(_ a: Matrix<Double>, alpha: Double) -> Matrix<Double> {
-        return mult(a, alpha: alpha) + matrix
     }
 
     func makeMatrixWithGrid(arr: [Double]) -> Matrix<Double> {
