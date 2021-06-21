@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ErmitConstant.xcodeproj">
+      location = "self:/Users/alexchekodanov/Documents/Study/ErmitConstant/HermitConstant.xcodeproj">
    </FileRef>
 </Workspace>

@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A72C8EA0264C581B003EE64A /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72C8E9F264C581B003EE64A /* Double.swift */; };
 		A74BE8D72558039D00D671CA /* Surge in Frameworks */ = {isa = PBXBuildFile; productRef = A74BE8D62558039D00D671CA /* Surge */; };
+		A7545718262DFA59002E2ECF /* InPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7545717262DFA59002E2ECF /* InPolygon.swift */; };
 		A7984F28253CA5D500FD8D1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7984F27253CA5D500FD8D1F /* AppDelegate.swift */; };
 		A7984F2A253CA5D500FD8D1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7984F29253CA5D500FD8D1F /* ViewController.swift */; };
 		A7984F2C253CA5D800FD8D1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7984F2B253CA5D800FD8D1F /* Assets.xcassets */; };
 		A7984F2F253CA5D800FD8D1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7984F2D253CA5D800FD8D1F /* Main.storyboard */; };
 		A7984F3D253CB4FA00FD8D1F /* GradientDescent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7984F3C253CB4FA00FD8D1F /* GradientDescent.swift */; };
+		A7DDB147265EB0AC001D99D6 /* Inequality.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DDB146265EB0AC001D99D6 /* Inequality.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +32,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A72C8E9F264C581B003EE64A /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		A74BE8D22558032500D671CA /* Surge */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Surge; sourceTree = "<group>"; };
-		A7984F24253CA5D500FD8D1F /* ErmitConstant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErmitConstant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7545717262DFA59002E2ECF /* InPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPolygon.swift; sourceTree = "<group>"; };
+		A7984F24253CA5D500FD8D1F /* HermitConstant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HermitConstant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7984F27253CA5D500FD8D1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7984F29253CA5D500FD8D1F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A7984F2B253CA5D800FD8D1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +43,7 @@
 		A7984F30253CA5D800FD8D1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7984F31253CA5D800FD8D1F /* ErmitConstant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ErmitConstant.entitlements; sourceTree = "<group>"; };
 		A7984F3C253CB4FA00FD8D1F /* GradientDescent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientDescent.swift; sourceTree = "<group>"; };
+		A7DDB146265EB0AC001D99D6 /* Inequality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inequality.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +68,7 @@
 		A7984F1B253CA5D500FD8D1F = {
 			isa = PBXGroup;
 			children = (
-				A7984F26253CA5D500FD8D1F /* ErmitConstant */,
+				A7984F26253CA5D500FD8D1F /* HermitConstant */,
 				A7984F3E253CB66100FD8D1F /* ThirdParty */,
 				A7984F25253CA5D500FD8D1F /* Products */,
 				A74BE8D52558039D00D671CA /* Frameworks */,
@@ -72,12 +78,12 @@
 		A7984F25253CA5D500FD8D1F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A7984F24253CA5D500FD8D1F /* ErmitConstant.app */,
+				A7984F24253CA5D500FD8D1F /* HermitConstant.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A7984F26253CA5D500FD8D1F /* ErmitConstant */ = {
+		A7984F26253CA5D500FD8D1F /* HermitConstant */ = {
 			isa = PBXGroup;
 			children = (
 				A7984F27253CA5D500FD8D1F /* AppDelegate.swift */,
@@ -88,13 +94,16 @@
 				A7984F31253CA5D800FD8D1F /* ErmitConstant.entitlements */,
 				A7984F39253CA88700FD8D1F /* Backend */,
 			);
-			path = ErmitConstant;
+			path = HermitConstant;
 			sourceTree = "<group>";
 		};
 		A7984F39253CA88700FD8D1F /* Backend */ = {
 			isa = PBXGroup;
 			children = (
 				A7984F3C253CB4FA00FD8D1F /* GradientDescent.swift */,
+				A72C8E9F264C581B003EE64A /* Double.swift */,
+				A7DDB146265EB0AC001D99D6 /* Inequality.swift */,
+				A7545717262DFA59002E2ECF /* InPolygon.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -110,9 +119,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A7984F23253CA5D500FD8D1F /* ErmitConstant */ = {
+		A7984F23253CA5D500FD8D1F /* HermitConstant */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A7984F34253CA5D800FD8D1F /* Build configuration list for PBXNativeTarget "ErmitConstant" */;
+			buildConfigurationList = A7984F34253CA5D800FD8D1F /* Build configuration list for PBXNativeTarget "HermitConstant" */;
 			buildPhases = (
 				A7984F20253CA5D500FD8D1F /* Sources */,
 				A7984F21253CA5D500FD8D1F /* Frameworks */,
@@ -124,12 +133,12 @@
 			dependencies = (
 				A74BE8D42558038C00D671CA /* PBXTargetDependency */,
 			);
-			name = ErmitConstant;
+			name = HermitConstant;
 			packageProductDependencies = (
 				A74BE8D62558039D00D671CA /* Surge */,
 			);
 			productName = ErmitConstant;
-			productReference = A7984F24253CA5D500FD8D1F /* ErmitConstant.app */;
+			productReference = A7984F24253CA5D500FD8D1F /* HermitConstant.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -147,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A7984F1F253CA5D500FD8D1F /* Build configuration list for PBXProject "ErmitConstant" */;
+			buildConfigurationList = A7984F1F253CA5D500FD8D1F /* Build configuration list for PBXProject "HermitConstant" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -160,7 +169,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A7984F23253CA5D500FD8D1F /* ErmitConstant */,
+				A7984F23253CA5D500FD8D1F /* HermitConstant */,
 			);
 		};
 /* End PBXProject section */
@@ -182,9 +191,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7DDB147265EB0AC001D99D6 /* Inequality.swift in Sources */,
 				A7984F3D253CB4FA00FD8D1F /* GradientDescent.swift in Sources */,
 				A7984F2A253CA5D500FD8D1F /* ViewController.swift in Sources */,
 				A7984F28253CA5D500FD8D1F /* AppDelegate.swift in Sources */,
+				A72C8EA0264C581B003EE64A /* Double.swift in Sources */,
+				A7545718262DFA59002E2ECF /* InPolygon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,15 +338,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ErmitConstant/ErmitConstant.entitlements;
+				CODE_SIGN_ENTITLEMENTS = HermitConstant/ErmitConstant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ErmitConstant/Info.plist;
+				INFOPLIST_FILE = HermitConstant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AlexUNN.ErmitConstant;
+				PRODUCT_BUNDLE_IDENTIFIER = Alex.UNN.HermitConstant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -344,15 +356,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ErmitConstant/ErmitConstant.entitlements;
+				CODE_SIGN_ENTITLEMENTS = HermitConstant/ErmitConstant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ErmitConstant/Info.plist;
+				INFOPLIST_FILE = HermitConstant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AlexUNN.ErmitConstant;
+				PRODUCT_BUNDLE_IDENTIFIER = Alex.UNN.HermitConstant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -361,7 +373,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A7984F1F253CA5D500FD8D1F /* Build configuration list for PBXProject "ErmitConstant" */ = {
+		A7984F1F253CA5D500FD8D1F /* Build configuration list for PBXProject "HermitConstant" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A7984F32253CA5D800FD8D1F /* Debug */,
@@ -370,7 +382,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A7984F34253CA5D800FD8D1F /* Build configuration list for PBXNativeTarget "ErmitConstant" */ = {
+		A7984F34253CA5D800FD8D1F /* Build configuration list for PBXNativeTarget "HermitConstant" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A7984F35253CA5D800FD8D1F /* Debug */,

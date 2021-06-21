@@ -38,7 +38,7 @@ public struct Matrix<Scalar> where Scalar: FloatingPoint, Scalar: ExpressibleByF
     public let rows: Int
     public let columns: Int
 
-    var grid: [Scalar]
+    public var grid: [Scalar]
 
     public var shape: Shape {
         if self.rows > self.columns {
@@ -979,4 +979,69 @@ public func eigenDecompose(_ lhs: Matrix<Double>) throws -> MatrixEigenDecomposi
     }
 
     return MatrixEigenDecompositionResult<Double>(rowCount: lhs.rows, eigenValueRealParts: eigenValueRealParts, eigenValueImaginaryParts: eigenValueImaginaryParts, leftEigenVectorWork: leftEigenVectorWork, rightEigenVectorWork: rightEigenVectorWork)
+}
+
+public extension Matrix {
+    mutating func addJtoIwithC(i: Int, j: Int, c: Scalar) {
+        for k in 0 ..< self.rows {
+            self.grid[k * self.rows + i] += self.grid[k * self.rows + j] * c
+        }
+    }
+
+    mutating func addJtoIwithCVerticaly(i: Int, j: Int, c: Scalar) {
+        for k in 0 ..< self.rows {
+            self.grid[i * self.rows + k] += self.grid[j * self.rows + k] * c
+        }
+    }
+    
+    func item(_ i: Int, _ j: Int) -> Scalar {
+        return grid[i * self.rows + j]
+    }
+
+    mutating func addAlphaTo(alpha: Scalar, _ i: Int, _ j: Int) {
+        grid[i * self.rows + j] = grid[i * self.rows + j] + alpha
+        grid[j * self.rows + i] = grid[i * self.rows + j]
+    }
+
+    mutating func makeSymmetrical() {
+        for i in 0 ..< self.rows {
+            for j in i + 1 ..< self.columns {
+                grid[j * self.rows + i] = grid[i * self.rows + j]
+            }
+        }
+    }
+
+    mutating func addRowsAndColumns(_ row: Int, _ column: Int) {
+        let newRows = self.rows + row
+        let newColumns = self.columns + column
+        var newGrid = [Scalar]()
+        for i in 0 ..< newRows {
+            for j in 0 ..< newColumns {
+                if i < self.rows, j < self.columns {
+                    newGrid.append(self.grid[i * self.rows + j])
+                } else if i == j {
+                    newGrid.append(1)
+                } else {
+                    newGrid.append(0.0)
+                }
+            }
+        }
+        self = Matrix<Scalar>(rows: newRows, columns: newColumns, grid: newGrid)
+    }
+
+    func sumOfDiagonalElement(from: Int = 0, to: Int) -> Scalar {
+        var counter: Scalar = 0.0
+        for i in from ... to {
+            counter += self.item(i, i)
+        }
+        return counter
+    }
+    
+    func multOfDiagonalElements() -> Scalar {
+        var counter: Scalar = 1
+        for i in 0 ..< rows {
+            counter *= self.item(i, i)
+        }
+        return counter
+    }
 }
