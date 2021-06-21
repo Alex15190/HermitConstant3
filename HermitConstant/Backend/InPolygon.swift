@@ -36,7 +36,7 @@ class InPolygon {
     func recGenVect(n: Int, dim: Int, arr: [Int]) {
         var arr = arr
         if n > 0 {
-            let lowPoint = arr.count == 0 ? 3 : 0
+            let lowPoint = arr.count == 0 ? GradientDescent.maxFoundDim : 0
             for i in lowPoint ..< dim {
                 if let last = arr.last {
                     if last == i {
@@ -59,7 +59,7 @@ class InPolygon {
 
     func findRightMatrix() -> Matrix<Double> {
         generateVectors()
-        genVectors.forEach { vector in
+        genVectors.reversed().forEach { vector in
             guard vector.count == 2 else { return }
             let row = vector[0]
             let column = vector[1]
@@ -71,8 +71,10 @@ class InPolygon {
             upperBoundMatr.addAlphaTo(alpha: inequality.upperBound, row, column)
             guard let matrixDet = det(matrix), let lowDet = det(lowerBoundMatr), let upDet = det(upperBoundMatr) else { return }
             if lowDet < upDet, lowDet < matrixDet, lowDet > 0 {
+                print("Lower bound \(inequality.lowerBound)")
                 matrix = lowerBoundMatr
             } else if upDet < matrixDet, upDet > 0 {
+                print("Upper bound \(inequality.upperBound)")
                 matrix = upperBoundMatr
             } else {
                 print("Can't go any further")

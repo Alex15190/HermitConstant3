@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -706,12 +706,12 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="HermitConstant" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="235"/>
+                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="255"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jIK-H9-RB6">
-                                <rect key="frame" x="418" y="203" width="64" height="32"/>
+                                <rect key="frame" x="418" y="223" width="64" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Pw0-GO-AfS"/>
                                 </constraints>
@@ -724,9 +724,9 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xaJ-XT-G8K">
-                                <rect key="frame" x="3" y="5" width="474" height="200"/>
+                                <rect key="frame" x="3" y="5" width="474" height="220"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="7ir-Bi-7H3"/>
+                                    <constraint firstAttribute="height" constant="220" id="7ir-Bi-7H3"/>
                                 </constraints>
                                 <textFieldCell key="cell" selectable="YES" title="Choose dim and click Start" id="ysn-J3-D4k">
                                     <font key="font" metaFont="system"/>
@@ -735,7 +735,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rJM-2h-UQ5">
-                                <rect key="frame" x="3" y="210" width="28" height="20"/>
+                                <rect key="frame" x="3" y="230" width="28" height="20"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Dim" id="WFs-W1-q8V">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -743,7 +743,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C6H-HS-MBl">
-                                <rect key="frame" x="39" y="210" width="50" height="20"/>
+                                <rect key="frame" x="39" y="230" width="50" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="omv-cI-1fh"/>
                                 </constraints>

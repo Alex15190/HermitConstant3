@@ -13,7 +13,13 @@ class GradientDescent {
     static let maxIteration = 1000
     static let twoDimMatrix = Matrix([[1.0, 0.5], [0.5, 1.0]])
     static let threeDimMatrix = Matrix([[1.0, 0.5, -0.5], [0.5, 1.0, -0.5], [-0.5, -0.5, 1]])
-    static let allFoundMatrix = [twoDimMatrix, threeDimMatrix]
+    static let fourDimMatrix = Matrix([[1.0, 0.5, -0.5, 0.5], [0.5, 1, -0.5, 0.5], [-0.5, -0.5, 1.0, 0], [0.5, 0.5, 0, 1.0]])
+    static let sevenDimMatrix = Matrix(rows: 7, columns: 7, grid: [1.0, 0.5, 0.0, -0.5, 0.5, 0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.5, 0.5, 0.0, -0.5, 0.0, 0.0, 1.0, 0.0, 0.0, 0.5, 0.5, 0.5, -0.5, 0.0, 1.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.0, 0.0, 1.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 1.0])
+    static let eightDimMatrix = Matrix(rows: 8, columns: 8, grid: [1.0, 0.5, 0.0, -0.5, 0.5, 0.0, 0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.5, 0.5, 0.0, 0.0, -0.5, 0.0, 0.0, 1.0, 0.0, 0.0, 0.5, 0.0, 0.5, 0.5, -0.5, 0.0, 1.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 1.0, 0.5, 0.5, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 1.0])
+    static let nineDimMatrix = Matrix(rows: 9, columns: 9, grid: [1.0, 0.5, 0.0, -0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.5, 0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 1.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.5, -0.5, 0.0, 1.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 1.0, 0.5, 0.5, 0.25, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.0, 0.0, 1.0])
+    static let tenDimMatrix = Matrix(rows: 10, columns: 10, grid: [1.0, 0.5, 0.0, -0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.5, 0.5, 0.0, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 1.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.5, -0.5, 0.0, 1.0, 0.0, 0.5, 0.0, 0.0, 0.25, 0.0, 0.0, 0.5, 0.0, 0.0, 1.0, 0.5, 0.5, 0.25, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.0, 0.0, 0.0, 0.0, 1.0])
+    static let allFoundMatrix = [twoDimMatrix, threeDimMatrix, fourDimMatrix, sevenDimMatrix, eightDimMatrix, nineDimMatrix, tenDimMatrix]
+    static let maxFoundDim = 10
 
     var dim: Int
     var matrix: Matrix<Double>
@@ -34,24 +40,8 @@ class GradientDescent {
         guard !GradientDescent.allFoundMatrix.contains(matrix) else {
             return matrix
         }
-        let y = findWrongVector()
-        guard y.count > 0 else {
-            let inPolygon = InPolygon(matrix: matrix)
-            return inPolygon.findRightMatrix()
-        }
-        yArray.append(contentsOf: y)
-        if let y = y.first {
-            let det = (y * transpose(y)).grid[0]
-            let alpha = pow(det / 3, 2)
-            matrix.grid = matrix.grid.compactMap { $0 + det * alpha } //это + alpha к каждому элементу матрицы
-        }
-        return findMatrix()
-    }
-
-    private func findWrongVector() -> [Matrix<Double>] {
-        let common = Common(f: matrix)
-        common.findWrongVectors()
-        return common.wrongVectors
+        let inPolygon = InPolygon(matrix: matrix)
+        return inPolygon.findRightMatrix()
     }
 
     private func createFirstPoint(_ dim: Int) -> Matrix<Double> {
@@ -64,6 +54,16 @@ class GradientDescent {
             return GradientDescent.twoDimMatrix
         case 3:
             return GradientDescent.threeDimMatrix
+        case 4:
+            return GradientDescent.fourDimMatrix
+        case 7:
+            return GradientDescent.sevenDimMatrix
+        case 8:
+            return GradientDescent.eightDimMatrix
+        case 9:
+            return GradientDescent.nineDimMatrix
+        case 10:
+            return GradientDescent.tenDimMatrix
         default:
             let n = dim - 1
             var firstMatrix = createFirstPoint(n)

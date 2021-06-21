@@ -29,8 +29,9 @@ class Inequality {
 
     func recGenVect(n: Int, arr: [Double]) {
         var arr = arr
+        let range = 2 //Для n <= 8 используй range == 1
         if n > 0 {
-            for i in -1 ... 1 {
+            for i in -range ... range {
                 arr.append(Double(i))
                 recGenVect(n: n - 1, arr: arr)
                 arr.removeLast()
